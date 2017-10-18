@@ -9,7 +9,12 @@
     "appId": "Terry",
     "mac": {
       "category": "public.app-category.developer-tools",
+      "target": "dmg",
       "icon": "src/assets/eva.icns"
+    },
+    "win": {
+      "target": "zip",
+      "icon": "src/assets/eva.ico"
     }
   },
   "scripts": {
@@ -18,14 +23,15 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "dist-win": "electron-builder --win --ia32"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
     "ejs": "^2.5.7",
-    "electron-settings": "^3.1.2", 
+    "electron-settings": "^3.1.2",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "serve-favicon": "^2.4.5"
