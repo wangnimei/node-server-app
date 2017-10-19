@@ -4,6 +4,7 @@
     <div class="content">
       <app-button :type="isStarted ? 'disabled' : 'primary'" @click="startServer">Start server</app-button>
       <app-button :type="isStarted ? 'primary' : 'disabled'" @click="stopServer">Stop server</app-button>
+      <app-button type="primary" @click="open">Server config</app-button>
     </div>
   </div>
 </template>
@@ -12,6 +13,8 @@
 import { ipcRenderer } from 'electron'
 import AppButton from './components/Button'
 import { Tips } from './components/Tips'
+import fs from 'fs'
+import child_process from 'child_process'
 
 export default {
   name: 'app',
@@ -21,7 +24,8 @@ export default {
   data () {
     return {
       process: null,
-      isStarted: false
+      isStarted: false,
+      path: __dirname
     }
   },
   methods: {
@@ -32,6 +36,9 @@ export default {
     stopServer() {
       if (!this.isStarted) return
       ipcRenderer.send('stopServer')
+    },
+    open() {
+      ipcRenderer.send('openFolders')
     }
   },
   created() {

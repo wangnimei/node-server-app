@@ -1,5 +1,6 @@
 var electron = require('electron')
 var settings = require('electron-settings')
+var exec = require('child_process').exec
 // Module to control application life.
 var app = electron.app
 // Module to create native browser window.
@@ -37,7 +38,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -160,4 +161,12 @@ ipcMain.on('startServer', function(event) {
 
 ipcMain.on('stopServer', function(event) {
   closeServer()
+})
+
+ipcMain.on('openFolders', function(event) {
+  if (process.platform === 'darwin') {
+    exec(`open ${__dirname}/server`, function(error, stdout, stderr) {
+      if (stderr) throw stderr
+    })
+  }
 })
