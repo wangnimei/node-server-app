@@ -168,5 +168,9 @@ ipcMain.on('openFolders', function(event) {
     exec(`open ${__dirname}/server`, function(error, stdout, stderr) {
       if (stderr) throw stderr
     })
+  } else if (process.platform === 'win32') {
+    exec(`explorer ${__dirname}\\server`, function(error, stdout, stderr) {
+      if (stderr) throw stderr
+    })
   }
 })

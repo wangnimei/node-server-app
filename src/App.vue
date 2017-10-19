@@ -13,8 +13,6 @@
 import { ipcRenderer } from 'electron'
 import AppButton from './components/Button'
 import { Tips } from './components/Tips'
-import fs from 'fs'
-import child_process from 'child_process'
 
 export default {
   name: 'app',
