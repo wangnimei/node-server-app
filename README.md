@@ -6,3 +6,6 @@ Download the last version on the [website](https://github.com/wangnimei/node-ser
 
 ### Mac
 [Download](https://github.com/wangnimei/node-server-app/releases/download/V1.0.0/node-server-app-1.0.0.dmg) the `.dmg` file
+
+### Windows(x64)
+[Download](https://github.com/wangnimei/node-server-app/releases/download/V1.0.0/node-server-app-1.0.0-win.zip) the `.zip` file
