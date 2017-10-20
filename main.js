@@ -1,18 +1,19 @@
 var electron = require('electron')
 var settings = require('electron-settings')
 var exec = require('child_process').exec
+var path = require('path')
+var url = require('url')
+var serverSettings = require('./server/app')
+var debug = require('debug')('server:server')
+var http = require('http')
+
+var isDevelopment = process.env.NODE_ENV === 'development'
+
 // Module to control application life.
 var app = electron.app
 // Module to create native browser window.
 var BrowserWindow = electron.BrowserWindow
 var ipcMain = electron.ipcMain
-
-var path = require('path')
-var url = require('url')
-
-var serverSettings = require('./server/app')
-var debug = require('debug')('server:server')
-var http = require('http')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -163,14 +164,22 @@ ipcMain.on('stopServer', function(event) {
   closeServer()
 })
 
-ipcMain.on('openFolders', function(event) {
-  if (process.platform === 'darwin') {
-    exec(`open ${__dirname}/server`, function(error, stdout, stderr) {
-      if (stderr) throw stderr
-    })
-  } else if (process.platform === 'win32') {
-    exec(`explorer ${__dirname}\\server`, function(error, stdout, stderr) {
-      if (stderr) throw stderr
-    })
+ipcMain.on('openFolders', function (event) {
+  if (isDevelopment) {
+    if (process.platform === 'darwin') {
+      exec(`open ${path.join(__dirname, 'server')}`, function (error, stdout, stderr) {
+        if (stderr) throw stderr
+      })
+    }
+  } else {
+    if (process.platform === 'darwin') {
+      exec(`open ${path.join(__dirname, '../', 'app.asar.unpacked', 'server')}`, function (error, stdout, stderr) {
+        if (stderr) throw stderr
+      })
+    } else if (process.platform === 'win32') {
+      exec(`open ${path.join(__dirname, '../', 'app.asar.unpacked', 'server')}`, function (error, stdout, stderr) {
+        if (stderr) throw stderr
+      })
+    }
   }
 })

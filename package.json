@@ -7,6 +7,7 @@
   "main": "main.js",
   "build": {
     "appId": "Terry",
+    "asarUnpack": "server",
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": "dmg",
@@ -21,7 +22,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "watch": "cross-env NODE_ENV=development webpack --watch --hide-modules",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "start": "electron .",
+    "start": "NODE_ENV=development electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist-win": "electron-builder --win --ia32"
