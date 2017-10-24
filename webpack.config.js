@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './bundle'),
-    publicPath: './bundle/',
+    publicPath: '/bundle/',
     filename: 'js/build.js'
   },
   module: {
@@ -62,7 +62,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: 'images/[name].[ext]?[hash]',
-          publicPath: isProduction ? '../' : './bundle/'
+          publicPath: isProduction ? '../' : '/bundle/'
         }
       }
     ]

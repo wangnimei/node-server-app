@@ -32,14 +32,18 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-
+  if (isDevelopment) {
+    mainWindow.loadURL('http://localhost:8080')
+  } else {
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  }
+  
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -149,6 +153,8 @@ server.on('error', onError)
 server.on('listening', onListening)
 
 server.on('connection', function(socket) {
+  console.log(socket)
+  console.log(process.env)
   sockets.push(socket)
   socket.once('close', function() {
     sockets.splice(sockets.indexOf(socket), 1)

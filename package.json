@@ -22,7 +22,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "watch": "cross-env NODE_ENV=development webpack --watch --hide-modules",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "start": "NODE_ENV=development electron .",
+    "start": "NODE_ENV=development electron ./ --debug=8000",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist-win": "electron-builder --win --ia32"
@@ -44,7 +44,7 @@
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
-    "electron": "1.8.1",
+    "electron": "^1.8.1",
     "electron-builder": "^19.37.2",
     "electron-rebuild": "^1.6.0",
     "eslint": "^4.8.0",

@@ -3,6 +3,7 @@ node_modules/
 dist/
 bundle/
 tmp/
+.vscode/
 npm-debug.log
 yarn-error.log
 
